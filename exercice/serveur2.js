@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 var port = 5372
-var port_bis = 4567
+var port_serveur3 = 8080
 var host = "localhost" 
 
 app.get(`/pong`, (req, res) => {
@@ -12,11 +12,14 @@ app.get(`/pong`, (req, res) => {
 
 app.get(`/ping`, (req, res) => {
     setTimeout(() => {
-        axios.get(`http://${host}:${port_bis}/ping`)
-        .then(response=>{
-            console.log(response.data);
-        }).catch(error=>{
-            console.log(error)
+        axios.get(`http://${host}:${port_serveur3}/serveur1`).then( response => {
+            var port_serveur1 = response.data.serveur
+            axios.get(`http://${host}:${port_serveur1}/ping`)
+            .then(response=>{
+                console.log(response.data);
+            }).catch(error=>{
+                console.log(error)
+            })
         })
     }, 500);
 })
