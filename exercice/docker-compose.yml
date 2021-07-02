@@ -1,0 +1,48 @@
+version: "3.3"  
+
+services:
+    serveur1:
+        build:
+            context: ./serveur1
+            dockerfile: Dockerfile
+        image: docker_cfa_serveur1
+        container_name: serveur1
+        ports:
+            - "4567:4567"
+        volumes:
+            - ~/CFA/docker-microservices-exercices/exercice:/app
+        network_mode: host
+        
+    serveur2:
+        build:
+            context: ./serveur2
+            dockerfile: Dockerfile
+        image: docker_cfa_serveur2
+        container_name: serveur2
+        ports:
+            - "5372:5372"
+        volumes:
+            - ~/CFA/docker-microservices-exercices/exercice:/app
+        network_mode: host
+    serveur3:
+        build:
+            context: ./serveur3
+            dockerfile: Dockerfile
+        image: docker_cfa_serveur3
+        container_name: serveur3
+        ports:
+            - "8080:8080"
+        volumes:
+            - ~/CFA/docker-microservices-exercices/exercice:/app
+        network_mode: host
+    serveur4:
+        build:
+            context: ./serveur4
+            dockerfile: Dockerfile
+        image: docker_cfa_serveur4
+        container_name: serveur4
+        ports:
+            - "1111:1111"
+        volumes:
+            - ~/CFA/docker-microservices-exercices/exercice:/app
+        network_mode: host
